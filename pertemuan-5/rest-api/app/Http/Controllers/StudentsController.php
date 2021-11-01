@@ -54,4 +54,15 @@ class StudentsController extends Controller
         ];
         return $hasil;
     }
+
+    function destroy($id)
+    {
+        Students::destroy($id);
+
+        $hasil = [
+            "message" => "Student id $id has been destroyed",
+            "data" => $this->index()
+        ];
+        return $hasil;
+    }
 }
