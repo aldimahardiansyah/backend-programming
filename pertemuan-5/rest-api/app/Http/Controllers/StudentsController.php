@@ -36,4 +36,22 @@ class StudentsController extends Controller
         ];
         return response()->json($data, 201);
     }
+
+    function update($id, Request $request)
+    {
+        $student = Students::find($id);
+
+        $student->nama = $request->nama;
+        $student->nim = $request->nim;
+        $student->email = $request->email;
+        $student->jurusan = $request->jurusan;
+
+        $student->save();
+
+        $hasil = [
+            "message" => "Student id $id has been updated",
+            "data" => $student
+        ];
+        return $hasil;
+    }
 }

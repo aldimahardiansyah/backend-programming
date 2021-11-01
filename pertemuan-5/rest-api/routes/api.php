@@ -18,4 +18,4 @@ use PHPUnit\Framework\MockObject\Builder\Stub;
 
 Route::get('/student', [StudentsController::class, 'index']);
 Route::post('/student', [StudentsController::class, 'store']);
-Route::put('/student', [StudentsController::class, 'update']);
+Route::put('/student/{id}', [StudentsController::class, 'update']);
