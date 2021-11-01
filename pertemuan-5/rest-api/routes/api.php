@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentsController;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/student', [StudentsController::class, 'index']);
+Route::post('/student', [StudentsController::class, 'store']);
+Route::put('/student', [StudentsController::class, 'update']);
