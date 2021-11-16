@@ -1,9 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
-use PHPUnit\Framework\MockObject\Builder\Stub;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +15,18 @@ use PHPUnit\Framework\MockObject\Builder\Stub;
 |
 */
 
-Route::get('/student', [StudentsController::class, 'index']);
-Route::post('/student', [StudentsController::class, 'store']);
-Route::get('/student/{id}', [StudentsController::class, 'show']);
-Route::put('/student/{id}', [StudentsController::class, 'update']);
-Route::delete('/student/{id}', [StudentsController::class, 'destroy']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/student', [StudentsController::class, 'index']);
+
+    Route::post('/student', [StudentsController::class, 'store']);
+
+    Route::get('/student/{id}', [StudentsController::class, 'show']);
+
+    Route::put('/student/{id}', [StudentsController::class, 'update']);
+
+    Route::delete('/student/{id}', [StudentsController::class, 'destroy']);
+});
+
+Route::post("/register", [AuthController::class, 'register']);
+
+Route::post("/login", [AuthController::class, 'login']);

@@ -21,14 +21,14 @@ class StudentsController extends Controller
 
     function store(Request $request)
     {
-        $input = [
-            'nama' => $request->nama,
-            'nim' => $request->nim,
-            'email' => $request->email,
-            'jurusan' => $request->jurusan
-        ];
+        $validateData = $request->validate([
+            'nama' => "required",
+            'nim' => "required|numeric",
+            'email' => "required|email",
+            'jurusan' => "required"
+        ]);
 
-        $student = Students::create($input);
+        $student = Students::create($validateData);
 
         $data = [
             'message' => 'Student is created',
